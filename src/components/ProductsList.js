@@ -7,7 +7,6 @@ import { addItemToCart } from '@/store/cartSlice';
 import Modal from 'react-modal';
 import { formatCurrency } from '@/utils/formatCurrency';
 
-
 const ProductList = () => {
   const [products, setProducts] = useState([]);
   const [modalIsOpen, setModalIsOpen] = useState(false);
@@ -21,13 +20,6 @@ const ProductList = () => {
       .then((data) => setProducts(data.products));
   }, []);
 
-  const handleAddToCart = () => {
-    if (selectedProduct) {
-      dispatch(addItemToCart(selectedProduct));
-      closeModal();
-    }
-  };
-
   const openModal = (product) => {
     setSelectedProduct(product);
     setModalIsOpen(true);
@@ -36,6 +28,13 @@ const ProductList = () => {
   const closeModal = () => {
     setModalIsOpen(false);
     setSelectedProduct(null);
+  };
+
+  const handleAddToCart = () => {
+    if (selectedProduct) {
+      dispatch(addItemToCart(selectedProduct));
+      closeModal();
+    }
   };
 
   return (
